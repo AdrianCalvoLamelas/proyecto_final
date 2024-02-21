@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 import './Categorias.css';
 
+
+
 export const Categorias = ({categories}) => {
 
   return(
     <div className='container'>
       {
-        categories.map((categorie) => {
-          return <div>
+        categories.map((categorie, index) => {
+          return <div key={index}>
             <img src={categorie.image} alt='imagen'/>
             <p>{categorie.title}</p>
           </div>
