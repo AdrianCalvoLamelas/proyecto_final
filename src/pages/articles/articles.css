@@ -1,0 +1,44 @@
+.articulo {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.articulo-imagen img {
+  width: 100%;
+  height: auto;
+}
+
+.articulo-info {
+  padding: 20px;
+}
+
+.articulo-nombre {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.articulo-marca, .articulo-precio {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.articulo-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.articulo-button:hover {
+  background-color: #0056b3;
+}

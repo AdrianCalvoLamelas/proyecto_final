@@ -1,0 +1,15 @@
+/* Estilos para móvil */
+.categorias-container {
+  padding: 10px;
+}
+
+.categories-slide {
+  width: 100vw;
+}
+
+/* Estilos para tablet y escritorio (media queries) */
+@media (min-width: 768px) {
+  .categorias-container {
+    padding: 20px;
+  }
+}

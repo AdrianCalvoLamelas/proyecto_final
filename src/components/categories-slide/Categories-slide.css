@@ -1,0 +1,29 @@
+/* Estilos para móvil */
+.categorias-slider {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Mejora el desplazamiento en iOS */
+  scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
+}
+
+.categoria {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  margin-right: 10px;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.categoria.selected {
+  background-color: #ffcc00;
+}
+
+/* Estilos para tablet y escritorio (media queries) */
+@media (min-width: 768px) {
+  .categoria {
+    margin-right: 20px;
+    font-size: 16px;
+  }
+}

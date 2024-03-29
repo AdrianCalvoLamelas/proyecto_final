@@ -19,7 +19,7 @@ export const Search = () => {
 
   function searchVehicle(event){
     event.preventDefault();
-    window.location = '/home';
+    window.location = '/categories';
   }
 
   //cambiamos el tipo de busqueda (por matricula o por modelo)
