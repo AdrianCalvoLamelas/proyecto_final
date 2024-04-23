@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 export const Subcategories = ({subcategories}) => {
 
-
-debugger
   const handleClick = () => {
     window.location = '/articles';
   };

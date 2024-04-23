@@ -1,36 +1,55 @@
 import { useState } from 'react';
+import { createUser, loginUser } from '../../services/Users';
 
 
 export const Login = () => {
 
-  // useState guarda en memoria el valor de showError
-  //setShowError modifica el valor de showError
-  // NUNCA SE PUEDE MODIFICAR DIRECTAMENTE SHOWERROR!!!!!!!! (showError = true => NO)
-  const [showError, setShowError] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isRegistering, setIsRegistering] = useState(false);
 
-  function checkPassword(event) {
+  const handleRegister = async (event) => {
     event.preventDefault();
+    try {
+      await createUser({name: event.target.user.name, email: event.target.email.value, password: event.target.password.value});
+      return window.location = '/categories';
+    } catch (error) {
+      setMessage('Error registering user');
+    }
+  };
 
-    //si la contraseña es correcta, no mostramos el error y navegamos en la aplicacion
-    if (event.target.user.value === 'kanike' && event.target.password.value === '1234') {
-      setShowError(false);
-      return window.location = '/search';
-    };
-
-    // si la contraseña es incorrecta, mostramos el error
-    setShowError(true);
-  }
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      await loginUser({email: event.target.email.value, password: event.target.password.value})
+      setMessage('Login successful');
+      return window.location = '/categories';
+    } catch (error) {
+      setMessage('Error logging in');
+    }
+  };
 
   return (
-    <form onSubmit={checkPassword}>
-      {/* Si showError es verdader mostramos el mensaje */}
-      {
-        showError && (<span>Usuario o contraseña incorrecta.</span>)
-      }
-      <input name="user" placeholder='Usuario' />
-      <input name="password" placeholder='Contraseña' />
-
-      <button type="submit">Entrar</button>
-    </form>
+    <div>
+    {isRegistering ? (
+      <form onSubmit={handleRegister}>
+        <h2>Register</h2>
+        {message && <span>{message}</span>}
+        <input name="name" placeholder="Nombre" />
+        <input name="email" placeholder="Email" />
+        <input name="password" type="password" placeholder="Contraseña" />
+        <button type="submit">Register</button>
+        <button onClick={() => setIsRegistering(false)}>Cancel</button>
+      </form>
+    ) : (
+      <form onSubmit={handleLogin}>
+        <h2>Login</h2>
+        {message && <span>{message}</span>}
+        <input name="email" placeholder="Email" />
+        <input name="password" type="password" placeholder="Contraseña" />
+        <button type="submit">Entrar</button>
+        <a href="#" onClick={() => setIsRegistering(true)}>¿No estás registrado?</a>
+      </form>
+    )}
+  </div>
   );
 };

@@ -1,11 +1,13 @@
 .articulo {
   display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.articulo-imagen {
+  flex: 0 0 150px;
 }
 
 .articulo-imagen img {
@@ -14,31 +16,32 @@
 }
 
 .articulo-info {
+  flex: 1;
   padding: 20px;
 }
 
-.articulo-nombre {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.articulo-info h2 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #333;
 }
 
-.articulo-marca, .articulo-precio {
+.articulo-info p {
+  margin: 5px 0;
   font-size: 16px;
-  margin-bottom: 5px;
+  color: #666;
 }
 
-.articulo-button {
-  padding: 10px 20px;
+button {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
 }
 
-.articulo-button:hover {
+button:hover {
   background-color: #0056b3;
 }

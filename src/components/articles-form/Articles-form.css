@@ -1,0 +1,59 @@
+/* FormArticle.css */
+
+/* Estilos base del formulario */
+.form-container {
+  max-width: 100%; /* Se establece el ancho máximo para que se ajuste a la pantalla */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  padding-right: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 100px; /* Ajusta la altura del textarea */
+}
+
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Media queries para tabletas y PCs */
+@media screen and (min-width: 601px) {
+  .form-container {
+    max-width: 700px; /* Se vuelve a establecer el ancho máximo para tabletas y PCs */
+  }
+
+  .form-control,
+  textarea {
+    width: 100%; /* Se mantiene el ancho completo para tabletas y PCs */
+  }
+}

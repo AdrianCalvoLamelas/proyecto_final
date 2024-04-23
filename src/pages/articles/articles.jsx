@@ -1,34 +1,15 @@
 import { useState } from "react";
 import { FormArticle } from "../../components/articles-form/articles-form";
+import { useQuery } from 'react-query';
+import { createArticle, fetchArticles } from '../../services/Articles';
+import './articles.css';
 
 export const Articles = () => {
 
-  const articles = [
-    {
-      "nombre": "Bomba de combustible",
-      "marca": "Bosch",
-      "precio": "120.99€",
-      "imagen": "url_de_la_imagen_1.jpg"
-    },
-    {
-      "nombre": "Filtro de aire",
-      "marca": "Mann-Filter",
-      "precio": "15.50€",
-      "imagen": "url_de_la_imagen_2.jpg"
-    },
-    {
-      "nombre": "Pastillas de freno",
-      "marca": "Brembo",
-      "precio": "50.00€",
-      "imagen": "url_de_la_imagen_3.jpg"
-    },
-    {
-      "nombre": "Lámpara halógena H7",
-      "marca": "Philips",
-      "precio": "9.99€",
-      "imagen": "url_de_la_imagen_4.jpg"
-    }
-  ];
+  const { data, isLoading } = useQuery({
+    queryKey: ["fetchArticles"],
+    queryFn: () => fetchArticles()
+  });
 
   const [showFormArticle, setShowFormArticle] = useState(false);
 
@@ -36,8 +17,16 @@ export const Articles = () => {
     setShowFormArticle(true);
   }
 
-  const onCreateNewArticle = () => {
-    alert('Creado');
+  const onCreateNewArticle = async (article) => {
+    try {
+      await createArticle(article);
+    } catch (error) {
+      console.log("error")
+    }
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -48,15 +37,17 @@ export const Articles = () => {
         <FormArticle onSubmit={onCreateNewArticle}/>
       }
       {
-        articles.map((article) => {
+        data.map((article) => {
           return <div className="articulo">
           <div className="articulo-imagen">
-            <img src={article.imagen} alt={article.nombre} />
+            <img src={article.image} alt={article.nombre} />
           </div>
           <div className="articulo-info">
-            <h2 className="articulo-nombre">{article.nombre}</h2>
-            <p className="articulo-marca">Marca: {article.marca}</p>
-            <p className="articulo-precio">Precio: {article.precio}</p>
+            <h2>{article.title}</h2>
+            <p>{article.number}</p>
+            <p>Marca: {article.brand}</p>
+            <p>Precio: {article.price}</p>
+            <p>Description: {article.description}</p>
           </div>
         </div>
         })
