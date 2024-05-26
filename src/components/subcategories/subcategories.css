@@ -5,12 +5,17 @@
 }
 
 .category-item {
+  cursor: pointer;
   display: flex;
   align-items: center;
 }
 
+.category-item:hover {
+  text-decoration: underline;
+}
+
 .category-item img {
-  max-width: 100%;
+  max-width: 40px;
   margin-right: 10px;
 }
 

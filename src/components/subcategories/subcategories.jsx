@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 export const Subcategories = ({subcategories}) => {
 
-  const handleClick = () => {
-    window.location = '/articles';
+  const handleClick = (subcategorie) => {
+    window.location = `/articles/${subcategorie.key}`;
   };
 
   return(

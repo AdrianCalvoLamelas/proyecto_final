@@ -1,14 +1,12 @@
 import { Outlet } from "react-router-dom"
-import { Categories } from "../pages/categories/Categories"
+import { Navbar } from "../components/navbar/navbar";
 import './Layout.css';
 
 export const Layout = () => {
 
   return (
     <div className="containerLayout">
-      <div>
-          <Categories/>
-      </div>
+      <Navbar/>
       <Outlet />
     </div>
   )

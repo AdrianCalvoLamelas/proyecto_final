@@ -1,0 +1,59 @@
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item {
+  margin-left: 10px;
+}
+
+.navbar-username {
+  margin-right: 10px;
+}
+
+.navbar-logout-btn {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.navbar-logout-btn:hover {
+  text-decoration: underline;
+}
+
+.icon-navbar {
+  margin-right: 10px;
+}
+
+.navbar-home {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-home:hover {
+  text-decoration: underline;
+}

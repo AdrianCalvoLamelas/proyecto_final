@@ -1,6 +1,51 @@
-# Getting Started with Create React App
+# Proyect
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is about a catalog of automobile spare parts.
+
+## Instalation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/AdrianCalvoLamelas/proyecto_final_frontend.git
+
+2. Navigate to the project directory:
+cd frontend
+
+3. Install the dependencies:
+npm install
+
+## Use
+
+1. Start the development server:
+  npm start
+
+2. Open http://localhost:3000 to view the project in your browser.
+
+## Avaliable users and register
+
+### Predeterminated users
+
+1. Administrator
+
+With this user we can manage the application data, we can create, modify and delete articles.
+
+  Email: admin
+  Password: admin
+
+2. Regular user
+
+A user will only be able to read the information of the available articles.
+
+  Email: user@test.com
+  Password: user
+
+### Register
+
+We can only register with the user role:
+1. Navigate to login page: http://localhost:3000/login
+2. Click on '¿No estás registrado?' link
+3. fill the form
 
 ## Available Scripts
 
@@ -44,3 +89,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+```

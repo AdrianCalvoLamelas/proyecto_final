@@ -1,35 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
-import { IntlProvider } from "react-intl";
-import { AppRoutes } from "./routes/routes";
-import { messages } from './locales';
+import { AppRoutes } from "./routes/Routes";
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { AuthProvider } from './context/auth/AuthProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 const App = (): JSX.Element => {
-  const locale = localStorage.getItem("locale") ?? "en";
-
+  
   const queryClient = new QueryClient()
-  // Cast is used to avoid TS error
-  const currentMessages =
-  messages[locale as keyof typeof messages] ?? messages.en;
 
   return (
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <IntlProvider
-        locale={locale}
-        messages={currentMessages}
-        defaultLocale="en"
-      >
+      <AuthProvider>
         <BrowserRouter>
           <AppRoutes />
         </BrowserRouter>
-      </IntlProvider>
+      </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
   );

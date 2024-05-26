@@ -1,43 +1,32 @@
-form {
+.search-form {
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-input,
-select {
-  width: 100%;
+.search-select,
+.search-submit {
+  flex: 1;
+  margin-right: 10px;
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-button[type='submit'] {
-  display: block;
+
+.search-submit {
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 @media only screen and (min-width: 600px) {
-  form {
+  .search-form {
     max-width: 600px;
   }
-}
 
-button.search-model {
-  background: none;
-  border: none;
-  color: #007bff;
-  padding: 0;
-  cursor: pointer;
-}
-
-button.search-model:focus {
-  outline: none;
+  .search-submit {
+    width: calc(50% - 10px);
+  }
 }

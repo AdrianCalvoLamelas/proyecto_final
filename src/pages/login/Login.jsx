@@ -1,52 +1,67 @@
-import { useState } from 'react';
-import { createUser, loginUser } from '../../services/Users';
-
+import { useState, useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { useUsers } from '../../hooks/useUsers';
+import { AuthContext } from '../../context/auth/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './Login.css';
 
 export const Login = () => {
-
-  const [message, setMessage] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { login } = useContext( AuthContext );
+  const { createUser, loginUser } = useUsers();
 
   const handleRegister = async (event) => {
-    event.preventDefault();
     try {
-      await createUser({name: event.target.user.name, email: event.target.email.value, password: event.target.password.value});
+      const userData = { name: event.name, email: event.email, password: event.password };
+      const response = await createUser(userData);
+      login(response);
+      toast.done("Usuario creado correctamente.");
       return window.location = '/categories';
     } catch (error) {
-      setMessage('Error registering user');
+      toast.error("Error al resgistrar el usuario, comprueba los datos introducidos.");
     }
   };
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await loginUser({email: event.target.email.value, password: event.target.password.value})
-      setMessage('Login successful');
+      const userData = { email: event.target.email.value, password: event.target.password.value };
+      const response = await loginUser(userData);
+      login(response);
       return window.location = '/categories';
     } catch (error) {
-      setMessage('Error logging in');
+      toast.error("Usuario o contraseña incorrecta.");
     }
   };
 
   return (
     <div>
+    <ToastContainer position="top-center"/>
     {isRegistering ? (
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleSubmit(handleRegister)} className="login-form">
         <h2>Register</h2>
-        {message && <span>{message}</span>}
-        <input name="name" placeholder="Nombre" />
-        <input name="email" placeholder="Email" />
-        <input name="password" type="password" placeholder="Contraseña" />
-        <button type="submit">Register</button>
-        <button onClick={() => setIsRegistering(false)}>Cancel</button>
+        <input {...register('name', { required: true })} className="login-input" name="name" placeholder="Nombre" />
+        {errors.name && <p className="error-message">Este campo es requerido</p>}
+        <input {...register('email', { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })} className="login-input" name="email" placeholder="Email" />
+        {errors.email && errors.email.type === 'required' && <p className="error-message">Este campo es requerido</p>}
+        {errors.email && errors.email.type === 'pattern' && <p className="error-message">Formato de correo electrónico inválido</p>}
+        <input {...register('password', { required: true })} className="login-input" name="password" type="password" placeholder="Contraseña" />
+        {errors.password && <p className="error-message">Este campo es requerido</p>}
+        
+        <div className="button-container">
+          <button type="submit" className="login-submit">Register</button>
+          <button type="button" className="btn-cancel" onClick={() => setIsRegistering(false)}>Cancel</button>
+        </div>
       </form>
     ) : (
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="login-form">
         <h2>Login</h2>
-        {message && <span>{message}</span>}
-        <input name="email" placeholder="Email" />
-        <input name="password" type="password" placeholder="Contraseña" />
-        <button type="submit">Entrar</button>
+        <input className="login-input" name="email" placeholder="Email" />
+        <input className="login-input" name="password" type="password" placeholder="Contraseña" />
+        <button type="submit" className="login-submit">Entrar</button>
         <a href="#" onClick={() => setIsRegistering(true)}>¿No estás registrado?</a>
       </form>
     )}
